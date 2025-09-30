@@ -1,0 +1,213 @@
+/* --- VARIABLES DE LA EDICIÓN ROMANCE --- */
+:root {
+    --bg-color: #FEFBF6;
+    --text-color: #5D5D5D;
+    --primary-color: #BC8F8F; /* Rosy Brown */
+    --accent-color: #D8BFD8; /* Thistle */
+    --font-cursive: 'Great Vibes', cursive;
+    --font-text: 'Lato', sans-serif;
+}
+
+/* --- RESET BÁSICO Y ESTILOS GLOBALES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-text);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.8;
+    font-weight: 300;
+    text-align: center;
+    /* Hacemos la posición relativa para que el fondo se ancle correctamente */
+    position: relative;
+    overflow-x: hidden; /* Previene scroll horizontal por las animaciones */
+}
+
+/* --- NUEVO: FONDO ANIMADO DE PARTÍCULAS --- */
+@keyframes move-particles {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+#background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Lo colocamos detrás de todo el contenido */
+    background-color: var(--bg-color);
+}
+
+#background-effects::before, #background-effects::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    opacity: 0.4;
+    /* Creamos múltiples partículas con box-shadow */
+    box-shadow:
+        5vw 15vh 1px var(--accent-color), 15vw 30vh 1px var(--primary-color),
+        25vw 5vh 1px var(--accent-color), 40vw 55vh 2px var(--primary-color),
+        50vw 20vh 1px var(--accent-color), 65vw 80vh 1px var(--primary-color),
+        75vw 40vh 2px var(--accent-color), 90vw 70vh 1px var(--primary-color),
+        5vw 95vh 1px var(--accent-color), 80vw 10vh 2px var(--primary-color),
+        30vw 85vh 1px var(--accent-color), 60vw 35vh 1px var(--primary-color);
+    animation: move-particles 60s linear infinite;
+}
+
+#background-effects::after {
+    /* Un segundo set de partículas con diferente duración y posición */
+    transform: translateX(50%);
+    box-shadow:
+        10vw 5vh 1px var(--primary-color), 20vw 45vh 2px var(--accent-color),
+        35vw 75vh 1px var(--primary-color), 55vw 10vh 1px var(--accent-color),
+        70vw 90vh 2px var(--primary-color), 85vw 25vh 1px var(--accent-color),
+        95vw 50vh 1px var(--primary-color), 2vw 60vh 2px var(--accent-color);
+    animation-duration: 90s; /* Más lento para dar profundidad */
+    animation-delay: -15s;
+}
+
+
+/* --- SECCIONES Y CONTENIDO GENERAL --- */
+.cursive-title {
+    font-family: var(--font-cursive);
+    font-size: clamp(3.5rem, 18vw, 4.5rem);
+    color: var(--primary-color);
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-family: var(--font-text);
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Aseguramos que el contenido del hero esté sobre el fondo base */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    animation: zoomIn 15s ease-in-out infinite alternate;
+    z-index: -1;
+}
+@keyframes zoomIn { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+.hero .cursive-title {
+    font-size: clamp(3.5rem, 20vw, 7rem);
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero h1 { /* Para la versión básica */
+    font-size: clamp(2.8rem, 15vw, 5rem);
+    color: white;
+    margin: 0;
+}
+
+.hero p { font-size: 1.2rem; letter-spacing: 3px; text-transform: uppercase; }
+.hero .date {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 15px;
+    display: inline-block;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-weight: 400;
+}
+
+section {
+    padding: 80px 20px;
+    position: relative; /* Para que esté sobre el fondo animado */
+    z-index: 1;
+}
+
+/* --- MODIFICADO: TARJETAS CON EFECTO GLASSMORPHISM --- */
+.event-card, /* Para la versión Básica */
+.event-container > div /* Para la versión Premium */
+{
+    /* Fondo semi-transparente y desenfocado */
+    background: rgba(255, 255, 255, 0.5);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+
+    /* Borde sutil para definir la tarjeta */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(188, 143, 143, 0.2); /* Sombra suave con el color primario */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* --- NUEVO: EFECTO HOVER EN TARJETAS --- */
+.event-card:hover,
+.event-container > div:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 40px 0 rgba(188, 143, 143, 0.3);
+}
+
+.event-card i, .event-container i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(188, 143, 143, 0.5); /* Le damos un brillo al icono */
+}
+
+/* --- RESTO DE ESTILOS (sin cambios significativos) --- */
+.hidden { opacity: 0; filter: blur(5px); transform: translateY(30px); transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out; }
+.show { opacity: 1; filter: blur(0); transform: translateY(0); }
+.info-section, .rsvp-section, .events-section { max-width: 900px; margin: 0 auto; }
+.event-container { display: flex; flex-direction: column; gap: 30px; }
+iframe { width: 100%; height: 300px; border: 0; border-radius: 10px; margin-top: 20px; }
+#gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+#gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+#gallery img:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+.gift-links a { color: var(--primary-color); text-decoration: none; font-weight: 700; margin: 0 10px; }
+.dress-code { font-family: var(--font-text); font-size: 1.5rem; border: 2px solid var(--accent-color); padding: 10px 20px; display: inline-block; border-radius: 5px; font-weight: 700; }
+#rsvp-form { max-width: 500px; margin: 20px auto; text-align: left; }
+#rsvp-form label { display: block; margin-bottom: 5px; font-weight: 700; }
+#rsvp-form input, #rsvp-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; font-family: var(--font-text); background-color: rgba(255,255,255,0.7); }
+.cta-button { background-color: #25D366; color: white; text-decoration: none; padding: 15px 30px; border-radius: 50px; font-size: 1.1rem; font-weight: 700; transition: transform 0.3s ease, box-shadow 0.3s ease; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: none; }
+.cta-button:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); }
+footer { padding: 40px 20px; background-color: rgba(248, 244, 244, 0.8); backdrop-filter: blur(5px); position: relative; z-index: 1; }
+footer .cursive-title { font-size: 2rem; margin-bottom: 0; }
+#music-toggle { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background-color: var(--primary-color); color: white; border: none; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center; }
+#lightbox { position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+#lightbox.active { display: flex; }
+#lightbox img { max-width: 90%; max-height: 80%; border-radius: 5px; }
+#lightbox .close { position: absolute; top: 20px; right: 30px; font-size: 40px; color: white; cursor: pointer; }
+#countdown { display: flex; justify-content: center; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
+#countdown > div { background: rgba(255, 255, 255, 0.1); padding: 10px; border-radius: 5px; min-width: 70px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); }
+#countdown span { display: block; font-size: 2rem; font-weight: 700; }
+@media (min-width: 768px) { .event-container { flex-direction: row; } #gallery { grid-template-columns: repeat(3, 1fr); } #countdown > div { min-width: 80px; padding: 15px; } #countdown span { font-size: 2.5rem; } }

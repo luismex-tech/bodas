@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Boda - Sofía & Alejandro</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <audio id="bg-music" src="cancion.mp3" loop autoplay muted></audio>
+    <button id="music-toggle"><i class="fas fa-volume-mute"></i></button>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="cursive-title">Sofía & Alejandro</h1>
+            <p>NOS CASAMOS</p>
+            <p class="date">15 de Noviembre, 2025</p>
+            <div id="countdown" class="hidden">
+                <div><span id="days">00</span>Días</div>
+                <div><span id="hours">00</span>Horas</div>
+                <div><span id="minutes">00</span>Minutos</div>
+                <div><span id="seconds">00</span>Segundos</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="info-section hidden">
+            <h2 class="cursive-title">Nuestra Historia</h2>
+            <p>
+                Todo comenzó con un café y una conversación que no queríamos que terminara. Hoy, después de tantos sueños compartidos y aventuras vividas, empezamos nuestro para siempre. Estamos muy emocionados de que nos acompañes en el día más importante de nuestras vidas.
+            </p>
+        </section>
+
+        <section class="events-section hidden">
+            <h2 class="cursive-title">Te Esperamos</h2>
+            <div class="event-container">
+                <div>
+                    <i class="fa-solid fa-church"></i>
+                    <h3>Ceremonia Religiosa</h3>
+                    <p>16:00 horas</p>
+                    <p>Parroquia del Sagrario</p>
+                    <p>Calle Francisco I. Madero #512, Centro, León, Gto.</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.753004735891!2d-101.685599926063!3d21.12241118455792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842bbf0b5ed382e3%3A0x4f7ecc527442f808!2sParroquia%20del%20Sagrario!5e0!3m2!1ses!2smx!4v1759198023957!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div>
+                    <i class="fa-solid fa-martini-glass-citrus"></i>
+                    <h3>Recepción</h3>
+                    <p>18:00 horas</p>
+                    <p>Hacienda El Refugio</p>
+                    <p>Blvd. Aeropuerto #1234, León, Gto.</p>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.031534799749!2d-101.72253032606208!3d21.15114328356649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842bc0b04507c13f%3A0xdfba3a8167090a2f!2sSal%C3%B3n%20Hacienda%20del%20Refugio!5e0!3m2!1ses!2smx!4v1759198280052!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                </div>
+            </div>
+        </section>
+
+        <section class="info-section hidden">
+            <h2 class="cursive-title">Galería</h2>
+            <div id="gallery">
+                <img src="images/gallery1.jpg" alt="Foto de la pareja 1">
+                <img src="images/gallery2.jpg" alt="Foto de la pareja 2">
+                <img src="images/gallery3.jpg" alt="Foto de la pareja 3">
+                <img src="images/gallery4.jpg" alt="Foto de la pareja 4">
+                <img src="images/gallery5.jpg" alt="Foto de la pareja 5">
+                <img src="images/gallery6.jpg" alt="Foto de la pareja 6">
+            </div>
+        </section>
+
+        <div id="lightbox">
+            <span class="close">×</span>
+            <img id="lightbox-image" src="" alt="Imagen ampliada">
+        </div>
+
+        <section class="info-section hidden">
+            <h3 class="cursive-title">Mesa de Regalos</h3>
+            <p>El mejor regalo es su presencia, pero si desean obsequiarnos algo, pueden hacerlo aquí:</p>
+            <div class="gift-links">
+                <a href="https://www.liverpool.com.mx/" target="_blank">Liverpool</a> | <a href="https://www.elpalaciodehierro.com/" target="_blank">Palacio de Hierro</a>
+            </div>
+        </section>
+
+        <section class="info-section hidden">
+            <h3 class="cursive-title">Código de Vestimenta</h3>
+            <p class="dress-code">Formal</p>
+        </section>
+
+        <section class="rsvp-section hidden">
+            <h2 class="cursive-title">Confirmar Asistencia</h2>
+            <p>Por favor, confirma tu asistencia antes del 30 de Octubre.</p>
+            <form id="rsvp-form">
+                <label for="name">Nombre(s) completo(s):</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="guests">Número de pases a confirmar:</label>
+                <input type="number" id="guests" name="guests" min="1" max="5" required>
+
+                <label for="song">¿Qué canción no puede faltar en la fiesta?</label>
+                <input type="text" id="song" name="song" placeholder="Ej: 'Perfect' de Ed Sheeran">
+
+                <button type="submit" class="cta-button">
+                    <i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>¡Gracias por ser parte de nuestra historia!</p>
+        <p class="cursive-title">S y A</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
